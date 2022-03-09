@@ -1,4 +1,5 @@
 # data_structure_and_algorithm
+
 所有能用JavaScript写的最终都会用JavaScript写，本项目的目的在于用Javascript实现一些常见的数据结构与算法。
 
 ## Array
@@ -16,3 +17,33 @@ While JavaScript arrays are, strictly speaking, JavaScript objects, they are spe
 objects categorized internally as arrays. The Array is one of the recognized JavaScript
 object types, and as such, there is a set of properties and functions you can use with
 arrays.
+
+## List
+
+Lists are one of the most common organizing tools people use in their day-to-day lives.
+We have to-do lists, grocery lists, top-ten lists, bottom-ten lists, and many other types.
+Our computer programs can also use lists, particularly if we only have a few items to
+store in list form. Lists are especially useful if we don’t have to perform searches on the
+items in the list or put them into some type of sorted order. When we need to perform
+long searches or complex sorts, lists become less useful, especially with more complex
+data structures.
+This chapter presents the creation of a simple list class. We start with the definition of
+a list abstract data type (ADT) and then demonstrate how to implement the ADT. We
+wrap up the chapter with some problems that are best solved with lists
+
+ADT:
+listSize (property) Number of elements in list
+pos (property) Current position in list
+length (property) Returns the number of elements in list
+clear (function) Clears all elements from list
+toString (function) Returns string representation of list
+getElement (function) Returns element at current position
+insert (function) Inserts new element after existing element
+append (function) Adds new element to end of list
+remove (function) Removes element from list
+front (function) Sets current position to first element of list
+end (function) Sets current position to last element of list
+prev (function) Moves current position back one element
+next (function) Moves current position forward one element
+currPos (function) Returns the current position in list
+moveTo (function) Moves the current position to specified position
