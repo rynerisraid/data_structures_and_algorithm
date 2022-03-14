@@ -61,6 +61,40 @@ cafeteria. Trays are always removed from the top, and when trays are put back on
 stack after being washed, they are placed on the top of the stack. The stack is known as
 a last-in, first-out (LIFO) data structure.
 
+ADT:
+
+```xml
+top (property)         Indexes of the first element in stack
+length (function)      Returns the size of Stack     
+push (function)        Push an element into Stack
+pop (function)         Pop the last element that push into the stack
+peek (function)        Returns the top element in the stack
+```
+
+# Queue
+
+A queue is a type of list where data are inserted at the end and are removed from the
+front. Queues are used to store data in the order in which they occur, as opposed to a
+stack, in which the last piece of data entered is the first element used for processing.
+Think of a queue like the line at your bank, where the first person into the line is the
+first person served, and as more customers enter a line, they wait in the back until it is
+their turn to be served.
+A queue is an example of a first-in, first-out (FIFO) data structure. Queues are used to
+order processes submitted to an operating system or a print spooler, and simulation
+applications use queues to model scenarios such as customers standing in the line at a
+bank or a grocery store.
+
 Because of the last-in, first-out nature of the stack, any element that is not currently at
 the top of the stack cannot be accessed. To get to an element at the bottom of the stack,
 you have to dispose of all the elements above it first.
+
+ADT
+
+```xml
+front (property)         Indexes of the first element in Queue
+length (function)      Returns the size of Queue
+push (function)        Push an element into Queue
+pop (function)         Pop the first element that push into the Queue
+peek (function)        Returns the first element in the Queue
+
+```
