@@ -8,11 +8,13 @@ function Queue(){
     this.dataStore = [];
     this.enqueue = enqueue;
     this.dequeue = dequeue;
+    this.dequeueWithPriority = dequeueWithPriority;
     this.front = front;
     this.back = back;
     this.toString = toString;
     this.empty = empty;
     this.toString = toString;
+    this.toStringWithPriority = toStringWithPriority;
 }
 
 
@@ -70,7 +72,28 @@ function empty(){
 }
 
 
+/**
+ * 
+ * @returns 
+ */
+function dequeueWithPriority() {
+    var priority = this.dataStore[0].code;
+    for(var i=1;i<this.dataStore.length;++i){
+        if(this.dataStore[i].code<priority){
+            priority = i;
+        }
+    }
+    console.log("dequeue with priority: "+priority);
+    return this.dataStore.splice(priority,1);
+}
+
+
+function toStringWithPriority() {
+    console.log(this.dataStore);
+}
+
 
 module.exports = {
     Queue,
 }
+
