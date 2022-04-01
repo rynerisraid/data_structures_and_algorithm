@@ -16,41 +16,64 @@ function Node(element){
     this.next = null;
 }
 
+
 function LList(){
     this.head = new Node("head");
-    this.find = find;
+    this.findCurrent = findCurrent;
+    this.findPrevious = findPrevious;
     this.insert = insert;
     this.remove = remove;
     this.display = display;
 }
 
-function find(node){
-    var currNode = this.head;
-    while(currNode.element!=item){
-        currNode = currNode.next;
+function findCurrent(item) {
+    var cur = this.head;
+    while(cur!=null){
+        if(cur.element===item){
+            console.log("find")
+            break;
+        }
+        cur = cur.next;
     }
-    return currNode;
+    if(cur===null){
+        return this.head;
+    }
+    
 }
 
-//Insert the new node after the node is found
-function insert(newElement, item) {
+function findPrevious(item){
+    var cur = this.head;
+    while(cur.next!=null&&cur.next.element!==item){
+        cur = cur.next;
+    }
+    if(cur.next.element===item){
+        return cur;
+    }
+    if(cur.next===nul){
+        return this.head;
+    }
+
+}
+
+function insert(newElement,item){
     var newNode = new Node(newElement);
-    var currNode = this.find(item);
-    newNode.next = currNode.next;
-    currNode.next = newNode;
+    var cur = findCurrent(item);
+    cur.next = newNode;
 }
 
-//Display the elements of a linked list
 function display(){
-    var curNode = this.head;
-    while(!(currNode.next==null)){
-        console.log(currNode.next.element);
-        currNode = curNode.next;
+    var cur = this.head;
+    while(cur!==null){
+        console.log(cur);
+        cur = cur.next;
     }
 }
 
+function remove(){
 
+}
 
-
-
+module.exports={
+    LList,
+}
 
