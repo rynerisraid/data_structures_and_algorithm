@@ -23,6 +23,7 @@ function LList(){
     this.findPrevious = findPrevious;
     this.insert = insert;
     this.remove = remove;
+    this.insertAfter = insertAfter;
     this.display = display;
 }
 
@@ -30,8 +31,7 @@ function findCurrent(item) {
     var cur = this.head;
     while(cur!=null){
         if(cur.element===item){
-            console.log("find")
-            break;
+            return cur;
         }
         cur = cur.next;
     }
@@ -52,28 +52,45 @@ function findPrevious(item){
     if(cur.next===nul){
         return this.head;
     }
-
 }
 
-function insert(newElement,item){
-    var newNode = new Node(newElement);
-    var cur = findCurrent(item);
+function insert(item){
+    var cur = this.head;
+    var newNode = new Node(item);
+    while(cur.next!=null){
+        cur = cur.next;
+    }
     cur.next = newNode;
+    return this.head;
 }
 
 function display(){
     var cur = this.head;
     while(cur!==null){
-        console.log(cur);
+        console.log(cur.element);
         cur = cur.next;
     }
 }
 
-function remove(){
-
+function remove(item){
+    var cur = this.findCurrent(item);
+    var prev = this.findPrevious(item);
+    prev.next = cur.next;
+    return cur;
 }
+
+function insertAfter(newElem,item){
+    var curNode = new Node(newElem);
+    var cur = this.findCurrent(item);
+    curNode.next = cur.next;
+    cur.next = curNode
+    return cur;
+}
+
+
 
 module.exports={
     LList,
+    Node
 }
 
