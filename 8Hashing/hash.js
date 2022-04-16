@@ -8,7 +8,8 @@
 function HashTable(){
     this.table = new Array(137);
     this.simpleHash = simpleHash;
-    this.showDistro = this.showDistro;
+    this.showDistro = showDistro;
+    this.betterHash = betterHash;
     this.put = put;
 }
 
@@ -21,12 +22,35 @@ function HashTable(){
  */
 
 function simpleHash(data){
-    var totoal = 0;
+    var total = 0;
     for(var i =0; i <data.length;++i){
         total+=data.charCodeAt(i);
     }
     return total % this.table.length;
 }
+
+/**
+ * Better hash function:
+ * The new hash function works by summing the ASCII values of the
+ * characters of a string, but it adds a step by multiplying the
+ * resulting total by a prime constant.
+ * 
+ */
+
+function betterHash(string) {
+    const H = 37;
+    var total = 0;
+    for (var i =0; i<string.length;++i){
+        total+=H*total + string.charCodeAt(i);
+    }
+    total = total%this.table.length;
+    if(total<0){
+        total+=this.table.length-1;
+    }
+
+    return parseInt(total);
+}
+
 
 /**
  * We can finish up this first attempt at the HashTable class with definitions for put()
@@ -35,9 +59,11 @@ function simpleHash(data){
  */
 
 function put(data){
-    var pos = this.simpleHash(data);
+    //var pos = this.simpleHash(data);
+    var pos = this.betterHash(data);
     this.table[pos] = data;
 }
+
 
 function showDistro(){
     var n = 0;
@@ -46,4 +72,10 @@ function showDistro(){
             console.log(i+":"+this.table[i]);
         }
     }
+}
+
+
+
+module.exports={
+    HashTable
 }
