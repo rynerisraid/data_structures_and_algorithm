@@ -30,11 +30,13 @@ function Set() {
     this.add = add;
     this.remove = remove;
     this.size = size;
-    //this.union =union;
-    //this.intersect = intersect;
-    //this.subset = subset;
-    //this.difference = difference;
+    this.contains = contains;
+    this.union =union;
+    this.intersect = intersect;
+    this.subset = subset;
+    this.difference = difference;
     this.show = show;
+    this.sort = sort;
 }
  
 function add(data){
@@ -65,6 +67,101 @@ function size(){
     return this.dataStore.length;
 }
 
+
+/**
+ * More Set Operations
+ * The more interesting functions to define are 
+ * union() 
+ * intersect() 
+ * subset()
+ * difference()
+ * 
+ */
+
+/**
+ * Define a helper function to Set Operations
+ * @param {*} data 
+ */
+function contains(data) {
+    return this.dataStore.indexOf(data)>-1?true:false
+}
+
+
+function union(set){
+    var tempSet = new Set()
+    for(var i=0;i<this.dataStore.length;++i){
+        tempSet.add(this.dataStore[i]);
+    }
+
+    for(var i=0; i<set.dataStore.length;++i){
+        if(!tempSet.contains(set.dataStore[i])){
+            tempSet.dataStore.push(set.dataStore[i]);
+        }
+    }
+
+    return tempSet;
+}
+
+/**
+ * This function is easier to defince:
+ * Each time a member og the first set is found to be a member of the
+ * second set it is added to a new set, which is the returen value of 
+ * the function.
+ * Here is the definition
+ * @param {*} set 
+ */
+
+function intersect(set) {
+    var tempSet = new Set();
+    for(var i = 0; i< this.dataStore.length;i++){
+        if(set.contains(this.dataStore[i])){
+            tempSet.add(this.dataStore[i])
+        }
+    }
+
+    return tempSet;
+}
+
+
+/**
+ * Subset operation
+ */
+
+function subset(set){
+    if(this.size()>set.size()){
+        return false;
+    }
+    else{
+        for(var i=0;i<this.dataStore.length;i++){
+            if(!set.contains(this.dataStore[i])){
+                return false;
+            }
+        }
+        return true;
+    }
+
+}
+
+
+/**
+ * This function returns a set that contains those members of the first
+ * set that are not in the second set. The deficition for difference() is
+ * shown below:
+ */
+
+function difference(set) {
+    var tempSet = new Set();
+    for(var i=0; i< this.dataStore.length;i++){
+        if(!set.contains(this.dataStore[i])){
+            tempSet.add(this.dataStore[i]);
+        }
+    }
+    return tempSet;
+}
+
+function sort(){
+    this.dataStore.sort();
+}
 
 module.exports={
     Set
